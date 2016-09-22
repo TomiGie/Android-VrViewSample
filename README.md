@@ -1,21 +1,25 @@
+# 概要
+Androidで360°写真（またはパノラマ写真）を表示させるためのサンプルや、日本語の解説が少なかったため、備忘録としてサンプルを作成してみました。
+
+![screen shot](http://i.giphy.com/n6huLH4zY54Kk.gif )
+
 # 開発準備
 
 ## Google VR SDK をプロジェクトに追加
 Android Studioのターミナルから以下のコマンドで追加
 
-~~~terminal
+```terminal:AndroidStudio/terminal
 $ git clone https://github.com/googlevr/gvr-android-sdk.git
-~~~
+```
 **【上記の方法がうまくいかない場合】**
 
-[こちら](https://github.com/googlevr/gvr-android-sdk)
-よりGoogle VR SDKをダウンロードし、解凍する
+[こちら](https://github.com/googlevr/gvr-android-sdk)よりGoogle VR SDKをダウンロードし、解凍する
 解答したフォルダ（gvr-android-sdk）をプロジェクトの直下に追加する
 
 # 開発
 
 ## setting.gradleに追記
-~~~gradle
+```gradle:setting.gradle
 include ':app'
 include ':gvr-android-sdk/libraries:audio'
 include ':gvr-android-sdk/libraries:base'
@@ -23,7 +27,7 @@ include ':gvr-android-sdk/libraries:common'
 include ':gvr-android-sdk/libraries:commonwidget'
 include ':gvr-android-sdk/libraries:panowidget'
 include ':gvr-android-sdk/libraries:videowidget'
-~~~
+```
 
 上記を追加したら**Sync Now**をする
 
@@ -34,11 +38,11 @@ include ':gvr-android-sdk/libraries:videowidget'
 ## app/build.gradleに追記
 dependenciesに以下を追加する
 
-~~~gradle
+```gradle:app/build.gradle
 compile project(':gvr-android-sdk/libraries:common')
 compile project(':gvr-android-sdk/libraries:commonwidget')
 compile project(':gvr-android-sdk/libraries:panowidget')
-~~~
+```
 入力したら、**SyncNow**をする
 
 **※minSdkVersionが19以上になっていないと、エラーが出るので注意**
@@ -46,16 +50,16 @@ compile project(':gvr-android-sdk/libraries:panowidget')
 ## xmlにVrPanoramaViewを追加
 表示したいレイアウトにVrPanoramaViewを追加する
 
-~~~xml
+```xml:activity_main.xml
 <com.google.vr.sdk.widgets.pano.VrPanoramaView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/vr_view"
         android:scrollbars="none"/>
-~~~
+```
 
 ## ImageLoaderTask.java を追加
-~~~java
+```java:ImageLoaderTask.java
 public class ImageLoaderTask extends AsyncTask<AssetManager, Void, Bitmap> {
     private static final String TAG = "ImageLoaderTask";
     private final String assetName;
@@ -97,11 +101,11 @@ public class ImageLoaderTask extends AsyncTask<AssetManager, Void, Bitmap> {
         this.assetName = assetName;
     }
 }
-~~~
+```
 
 ## MainActivity.javaにメソッドを追加
 
-~~~java
+```java:MainActivity.java
 public class MainActivity extends AppCompatActivity {
 
     private VrPanoramaView panoWidgetView;
@@ -153,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         backgroundImageLoaderTask = task;
     }
 }
-~~~
+```
 
 ## assetsフォルダを app/main 配下に追加
 このフォルダにパノラマ画像素材を追加する
