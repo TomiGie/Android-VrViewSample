@@ -1,7 +1,7 @@
 # 概要
 Androidで360°写真（またはパノラマ写真）を表示させるためのサンプルや、日本語の解説が少なかったため、備忘録としてサンプルを作成してみました。
 
-![screen shot](http://i.giphy.com/n6huLH4zY54Kk.gif )
+![](https://github.com/TomiGie/Android-VrViewSample/raw/master/screenshot.gif)
 
 # 開発準備
 
