@@ -1,0 +1,7 @@
+include ':app'
+include ':gvr-android-sdk/libraries:audio'
+include ':gvr-android-sdk/libraries:base'
+include ':gvr-android-sdk/libraries:common'
+include ':gvr-android-sdk/libraries:commonwidget'
+include ':gvr-android-sdk/libraries:panowidget'
+include ':gvr-android-sdk/libraries:videowidget'
